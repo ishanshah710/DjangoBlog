@@ -3,6 +3,9 @@ from django.contrib.auth import get_user_model
 from django.db.models.deletion import CASCADE
 from django.urls import reverse
 
+from tinymce import HTMLField
+
+
 # Create your models here.
 
 User = get_user_model()
@@ -30,6 +33,9 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     overview = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+    
+    content = HTMLField()
+    
     comment_count = models.IntegerField(default=0)
     view_count = models.IntegerField(default=0)
 
@@ -38,6 +44,9 @@ class Post(models.Model):
     categories = models.ManyToManyField(Category)
 
     featured = models.BooleanField()
+
+    previous_post = models.ForeignKey('self', related_name='previous', on_delete=models.SET_NULL, blank=True, null=True)
+    next_post = models.ForeignKey('self', related_name='next', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return self.title

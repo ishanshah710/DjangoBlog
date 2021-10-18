@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count, Q
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from marketing.models import Signup
 
@@ -82,12 +82,21 @@ def blog(request):
         # 'post_list': post_list,
         'page_request_var': page_request_variable,
         'paginated_queryset': paginated_queryset,
-        'latest_posts': most_recent,
+        'most_recent': most_recent,
         'category_count': category_count
     }
 
     return render(request, 'blog.html', context)
 
 def post(request, pk):
-    context = {}
+
+    post = get_object_or_404(Post, pk=pk)
+    most_recent = Post.objects.order_by('-timestamp')[:3]
+    category_count = get_category_count()
+
+    context = {
+        'post': post,
+        'most_recent': most_recent,
+        'category_count': category_count
+    }
     return render(request, 'post.html', context)
