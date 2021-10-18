@@ -19,14 +19,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from posts.views import index, blog, post
+from posts.views import index, blog, post, search_results
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('', index),
-    path('blog/', blog),
-    path('post/', post)
+    path('blog/', blog, name='post-list'),
+
+    path('search/', search_results, name='search-results'),
+    path('post/<pk>/', post, name='post-detail')
 ]
 
 if settings.DEBUG:

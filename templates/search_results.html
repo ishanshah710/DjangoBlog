@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% if queryset %}
+        <h2>Matching Results With '{{ query }}'</h2>
+        {% for post in queryset %}
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            <br>
+        {% endfor %}
+    {% else %}
+        <h2>No Results matched with word '{{ query }}'</h2>
+    {% endif %}
+
+{% endblock content %}
