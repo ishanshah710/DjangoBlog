@@ -1,4 +1,5 @@
 from django import forms
+from django.db.models import fields
 from tinymce import TinyMCE
 from .models import Comment, Post
 
@@ -17,7 +18,10 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = '__all__'
+        # fields = '__all__'
+        fields = ('title', 'overview', 'content', 
+                'thumbnail', 'categories', 
+                'featured', 'previous_post', 'next_post', )
 
 class CommentForm(forms.ModelForm):
     

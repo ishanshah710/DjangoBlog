@@ -59,6 +59,16 @@ class Post(models.Model):
             'pk': self.pk
         })
     
+    def get_update_url(self, ):
+        return reverse('post-update', kwargs={
+            'pk': self.pk
+        })
+    
+    def get_delete_url(self, ):
+        return reverse('post-delete', kwargs={
+            'pk': self.pk
+        })
+    
     @property
     def get_comments(self):
         return self.comments.all().order_by('-timestamp')

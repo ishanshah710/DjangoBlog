@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from posts.views import index, blog, post, search_results
+from posts.views import index, blog, post, post_create, post_delete, post_update, search_results
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,7 +28,11 @@ urlpatterns = [
     path('blog/', blog, name='post-list'),
 
     path('search/', search_results, name='search-results'),
+    
+    path('create/', post_create, name='post-create'),
     path('post/<pk>/', post, name='post-detail'),
+    path('post/<pk>/update/', post_update, name='post-update'),
+    path('post/<pk>/delete/', post_delete, name='post-delete'),
 
     path('tinymce/', include('tinymce.urls')),
 

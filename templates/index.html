@@ -47,7 +47,7 @@
                       {% endfor %}
 
                     </div>
-                    <a href="post.html">
+                    <a href="{{ post.get_absolute_url }}">
                       <h2 class="h4">{{ post.title }}</h2></a>
                   </header>
                   <p>{{ post.overview }}</p>
@@ -100,7 +100,7 @@
                     {% endfor %}
                     
                   </div>
-                </div><a href="post.html">
+                </div><a href="{{ pst.get_absolute_url }}">
                   <h3 class="h4">{{ pst.title }}</h3></a>
                 <p class="text-muted">{{ pst.overview }}</p>
               </div>
