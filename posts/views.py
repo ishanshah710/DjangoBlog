@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, redirect, render, reverse
 from marketing.models import Signup
 from posts.forms import CommentForm, PostForm
 
-from .models import Author, Post
+from .models import Author, Post, PostView
 
 
 def get_author(user):
@@ -102,6 +102,9 @@ def post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     most_recent = Post.objects.order_by('-timestamp')[:3]
     category_count = get_category_count()
+
+    PostView.objects.get_or_create(user=request.user, post=post)
+    # PostView.objects.create(post=post)
 
     form = CommentForm(request.POST or None)
 
