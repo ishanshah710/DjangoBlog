@@ -24,7 +24,7 @@ from posts.views import index, blog, post, post_create, post_delete, post_update
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    path('', index),
+    path('', index, name='home-page'),
     path('blog/', blog, name='post-list'),
 
     path('search/', search_results, name='search-results'),
@@ -36,6 +36,7 @@ urlpatterns = [
 
     path('tinymce/', include('tinymce.urls')),
 
+    path('accounts/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:

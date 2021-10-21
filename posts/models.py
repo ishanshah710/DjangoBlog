@@ -17,7 +17,7 @@ class PostView(models.Model):
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return self.user.username
+        return '{} : {}'.format(self.user.username, self.post.title)
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -31,7 +31,7 @@ class Comment(models.Model):
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_picture = models.ImageField()
+    # profile_picture = models.ImageField(default='static_in_env/img/user.jpg') 
 
     def __str__(self):
         return self.user.username
@@ -59,6 +59,7 @@ class Post(models.Model):
     # view_count = models.IntegerField(default=0)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     thumbnail = models.ImageField()
+
     categories = models.ManyToManyField(Category)
 
     featured = models.BooleanField()
@@ -97,4 +98,4 @@ class Post(models.Model):
     
     @property
     def comment_count(self):
-        return Comment.objects.filter(post=self).count()
+        return Comment.objects.filter(post=self).count() or 0

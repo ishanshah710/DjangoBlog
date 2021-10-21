@@ -8,8 +8,9 @@
     <section style="background: url({% static 'img/hero.jpg' %}); background-size: cover; background-position: center center" class="hero">
       <div class="container">
         <div class="row">
-          <div class="col-lg-7">
-            <h1>Bootstrap 4 Blog - A free template by Bootstrap Temple</h1><a href="#" class="hero-link">Discover More</a>
+          <div class="col-lg-9">
+            <h1>Blog site - Create and maintain Articles</h1>
+            <!-- <a href="#" class="hero-link">Discover More</a> -->
           </div>
         </div><a href=".intro" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Scroll Down</a>
       </div>
@@ -19,8 +20,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <h2 class="h3">Some great intro here</h2>
-            <p class="text-big">Place a nice <strong>introduction</strong> here <strong>to catch reader's attention</strong>. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderi.</p>
+            <h2 class="h3">Featured Articles</h2>
           </div>
         </div>
       </div>
@@ -52,7 +52,9 @@
                   </header>
                   <p>{{ post.overview }}</p>
                   <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                      <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
+                      <!-- <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid"></div> -->
+                      <div class="avatar"><img src="{% static 'img/user.svg' %}" alt="..." class="img-fluid"></div>
+
                       <div class="title"><span>{{ post.author }} </span></div></a>
                     <div class="date"><i class="icon-clock"></i> {{ post.timestamp | timesince }} ago</div>
                     <div class="comments"><i class="icon-comment"></i>{{post.comment_count }}</div>
@@ -71,7 +73,7 @@
       </div>
     </section>
     <!-- Divider Section-->
-    <section style="background: url({% static 'img/divider-bg.jpg' %}); background-size: cover; background-position: center bottom" class="divider">
+    <!-- <section style="background: url({% static 'img/divider-bg.jpg' %}); background-size: cover; background-position: center bottom" class="divider">
       <div class="container">
         <div class="row">
           <div class="col-md-7">
@@ -79,12 +81,12 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- Latest Posts -->
     <section class="latest-posts"> 
       <div class="container">
         <header> 
-          <h2>Latest from the blog</h2>
+          <h2>Latest from the blogs</h2>
           <!-- <p class="text-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
         </header>
         <div class="row">
@@ -132,26 +134,6 @@
         </div>
       </div>
     </section>
-    <!-- Gallery Section-->
-    <section class="gallery no-padding">    
-      <div class="row">
-        <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="img/gallery-1.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-1.jpg' %}" alt="..." class="img-fluid">
-              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
-        </div>
-        <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="img/gallery-2.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-2.jpg' %}" alt="..." class="img-fluid">
-              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
-        </div>
-        <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="img/gallery-3.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-3.jpg' %}" alt="..." class="img-fluid">
-              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
-        </div>
-        <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="img/gallery-4.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-4.jpg' %}" alt="..." class="img-fluid">
-              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
-        </div>
-      </div>
     </section>
     <!-- Page Footer-->
     

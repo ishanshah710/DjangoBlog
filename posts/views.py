@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, redirect, render, reverse
 from marketing.models import Signup
 from posts.forms import CommentForm, PostForm
 
-from .models import Author, Post, PostView
+from .models import Author, Post, PostView, User
 
 
 def get_author(user):
@@ -46,6 +46,7 @@ def get_category_count():
     #     print(ct)
 
     return queryset
+
 
 def index(request):
     featured_posts = Post.objects.filter(featured=True)
@@ -103,9 +104,14 @@ def post(request, pk):
     most_recent = Post.objects.order_by('-timestamp')[:3]
     category_count = get_category_count()
 
-    PostView.objects.get_or_create(user=request.user, post=post)
-    # PostView.objects.create(post=post)
+    is_author = False
 
+    if request.user.is_authenticated:
+        PostView.objects.get_or_create(user=request.user, post=post)
+        logged_user = User.objects.get(username=request.user.username)
+        is_author = (logged_user == post.author.user)    
+    # PostView.objects.create(post=post)
+    
     form = CommentForm(request.POST or None)
 
     if request.method == 'POST':
@@ -121,7 +127,8 @@ def post(request, pk):
         'post': post,
         'most_recent': most_recent,
         'category_count': category_count,
-        'form':form
+        'form':form,
+        'is_author': is_author
     }
     return render(request, 'post.html', context)
 
@@ -129,6 +136,11 @@ def post_create(request):
     title = 'Create'
     form = PostForm(request.POST or None, request.FILES or None)
     author = get_author(request.user)
+
+    print("Author ==> ", author)
+
+    if not author:
+        author = Author.objects.create(user=request.user)
 
     if request.method == 'POST':
         if form.is_valid():

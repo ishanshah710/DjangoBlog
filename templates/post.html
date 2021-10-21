@@ -26,15 +26,18 @@
                     {% endfor %}
                   </div>
 
+                  {% if is_author %}
                   <div>
-                    <a href="{% url 'post-update' pk=post.pk %}">Update</a>
-                    <a href="{% url 'post-delete' pk=post.pk %}">Delete</a>
+                    <a href="{% url 'post-update' pk=post.pk %}" class="btn btn-primary">Update</a>
+                    <a href="{% url 'post-delete' pk=post.pk %}" class="btn btn-primary">Delete</a>
                   </div>
+                  {% endif %}
                 </div>
 
                 <h1>{{ post.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
                 <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
-                    <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
+                    <!-- <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid"></div> -->
+                    <div class="avatar"><img src="{% static 'img/user.svg' %}" alt="..." class="img-fluid"></div>
                     <div class="title"><span>{{ post.author.user.username }}</span></div></a>
                   <div class="d-flex align-items-center flex-wrap">       
                     <div class="date"><i class="icon-clock"></i> {{ post.timestamp|timesince }} ago</div>
@@ -79,12 +82,12 @@
                     <div class="comment">
                       <div class="comment-header d-flex justify-content-between">
                         <div class="user d-flex align-items-center">
-                          {% if comment.user.author %}
+                          <!-- {% if comment.user.author %}
                             <div class="image"><img src="{{ comment.user.author.profile_picture.url }}" alt="..." class="img-fluid rounded-circle"></div>
                           {% else %}
                             <div class="image"><img src="{% static 'img/user.svg' %}" alt="..." class="img-fluid rounded-circle"></div>
-                          {% endif %}
-                          
+                          {% endif %} -->
+                          <div class="image"><img src="{% static 'img/user.svg' %}" alt="..." class="img-fluid rounded-circle"></div>
                           <div class="title"><strong>{{ comment.user.username }}</strong><span class="date">{{ comment.timestamp | timesince }} ago</span></div>
                         </div>
                       </div>
@@ -115,6 +118,8 @@
                       </div>
                     </form>
                   </div>
+                {% else %}
+                  <a href="{% url 'account_login'%}" class="btn btn-primary">Login to Comment</a>
                 {% endif %}
               </div>
             </div>
