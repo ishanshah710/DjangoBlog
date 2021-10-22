@@ -8,3 +8,5 @@ django-tinymce4-lite
 django_crispy_forms
 django-allauth
 gunicorn
+psycopg2
+python-dotenv
