@@ -10,3 +10,4 @@ django-allauth
 gunicorn
 psycopg2
 python-dotenv
+whitenoise
